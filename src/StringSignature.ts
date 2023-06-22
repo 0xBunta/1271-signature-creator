@@ -1,7 +1,15 @@
 import { ethers } from 'ethers';
+import dotenv from 'dotenv';
 
-async function signMessageWithPrivateKey(message, privateKey) {    
-    // Hash the message
+dotenv.config();
+
+interface SignatureResult {
+  messageHash: string;
+  signatureString: string;
+}
+
+async function signMessageWithPrivateKey(message: string, privateKey: string): Promise<SignatureResult> {
+  // Hash the message
     const messageHash = ethers.utils.hashMessage(message);
 
     // Sign the message hash
@@ -12,7 +20,7 @@ async function signMessageWithPrivateKey(message, privateKey) {
     return {messageHash, signatureString};
 }
 // Usage example
-const privateKey = 'INSERT_PRIVATE_KEY_HERE';
+const privateKey = process.env.PRIVATE_KEY as string;
 const message = 'Hello, World!';
 
 signMessageWithPrivateKey(message, privateKey)
@@ -20,6 +28,6 @@ signMessageWithPrivateKey(message, privateKey)
     console.log('Hash:', messageHash);
     console.log('Signature:', signatureString);
   })
-  .catch((error) => {
+  .catch((error: Error) => {
     console.error('Error:', error);
   });

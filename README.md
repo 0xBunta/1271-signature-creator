@@ -1,7 +1,21 @@
-# Usage
+## Setup
 
-insert private key in INSERT_PRIVATE_KEY_HERE
+create .env and insert env variables inside .env file
 
-yarn install
+```PUBLIC_KEY=Your public key```
 
-yarn start
+```PRIVATE_KEY=Your private key```
+
+## Run
+
+- Install dependencies
+
+```yarn install```
+
+- To sign using a string:
+
+```yarn string```
+
+- To sign using MakerOrder: 
+
+```yarn maker```
